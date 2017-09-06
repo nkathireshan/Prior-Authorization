@@ -287,7 +287,10 @@ cat("F1 Score : ", 2*(conf.mat[2,2]/sum(conf.mat[,2])*conf.mat[2,2]/sum(conf.mat
 #########################################################################################
 rm(list= ls()[!(ls() %in% c('traindata','testdata'))])
 # Build best SVM model
-PA_SVM <- svm(Target~ NdcId + DoctorID + com3Id, data=traindata,  kernel = "linear")
+#PA_SVM <- svm(Target~ NdcId + DoctorID + com3Id, data=traindata,  kernel = "linear")
+#SVM with linear kernal , the prediction has given the most of 97% Recall which was the highest amongst all other Algorithms
+# When the kernal is changed from linear to polinomial the prediction was taken to the top and has achieved 100% Recall
+PA_SVM <- svm(Target~ NdcId + DoctorID + com3Id, data=traindata,  kernel = "polinomial")
 
 # Look at the model summary
 summary(PA_SVM)
